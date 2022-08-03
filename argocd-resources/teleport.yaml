@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: teleport-cluster
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: teleport-cluster
+    repoURL: https://charts.releases.teleport.dev
+    targetRevision: 10.1.2
+    helm:
+      values: |
+        clusterName: demo
+        acme: false
+        acmeEmail: ""
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: teleport-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
