@@ -12,7 +12,7 @@ spec:
     helm:
       values: |
         serviceMonitor:
-          enabled: true
+          enabled: true # has to be false if you do not have Prometheus already installed
         trivy:
           ignoreUnfixed: true
   destination:
@@ -21,5 +21,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true

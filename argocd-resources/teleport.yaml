@@ -11,9 +11,9 @@ spec:
     targetRevision: 10.1.2
     helm:
       values: |
-        clusterName: demo
-        acme: false
-        acmeEmail: ""
+        clusterName: <yourpreferred domain name>
+        acme: true
+        acmeEmail: <youremail>
   destination:
     server: https://kubernetes.default.svc
     namespace: teleport-cluster
